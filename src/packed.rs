@@ -23,7 +23,7 @@ pub(crate) fn extract(vals: i32x4, imm: usize) -> u32 {
             1 => _mm_extract_epi32(vals, 1) as u32,
             2 => _mm_extract_epi32(vals, 2) as u32,
             3 => _mm_extract_epi32(vals, 3) as u32,
-            _ => unreachable!(),
+            _ => core::hint::unreachable_unchecked(),
         }
     }
 }
@@ -35,8 +35,10 @@ pub(crate) fn insert(vals: &mut i32x4, val: i32, imm: usize) {
             1 => _mm_insert_epi32(*vals, val, 1),
             2 => _mm_insert_epi32(*vals, val, 2),
             3 => _mm_insert_epi32(*vals, val, 3),
-            _ => unreachable!(),
+            _ => core::hint::unreachable_unchecked(),
         }
     };
-    ::std::mem::replace(vals, updated);
+    unsafe {
+        ::std::ptr::write(vals, updated);
+    }
 }

@@ -2,7 +2,7 @@
 
 use super::SFMT;
 
-use rand::{Error, RngCore, SeedableRng};
+use rand_core::{Error, RngCore, SeedableRng};
 use std::cell::RefCell;
 use std::rc::Rc;
 

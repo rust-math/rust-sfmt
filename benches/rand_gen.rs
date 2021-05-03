@@ -5,6 +5,8 @@ extern crate sfmt;
 extern crate test;
 
 use rand::*;
+use rand_core::SeedableRng;
+use rand_xorshift::*;
 use sfmt::SFMT;
 use test::Bencher;
 
